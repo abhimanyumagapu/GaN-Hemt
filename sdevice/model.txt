@@ -1,0 +1,52 @@
+File{
+Grid = "sdemodel_msh.tdr"
+Plot = "n1_des.tdr"
+Current = "n2_des.plt"
+Output = "n3_des.log"
+}
+ 
+Electrode{
+{ Name="s" Voltage=0.0}
+{ Name="d" Voltage=0.7}
+{ Name="g" Voltage=0.0}
+}
+ 
+Physics(Material="Silicon"){
+Fermi
+EffectiveIntrinsicDensity(OldSlotboom)
+Mobility(
+PhuMob
+Enormal
+eHighFieldsat(CarrierTempDrive)
+hHighFieldsat(GradQuasiFermi)
+* thin_layer_mobility
+)
+ 
+Recombination(
+SRH(DopingDependence)
+eAvalanche(CarrierTempDrive)
+hAvalanche(CarrierTempDrive)
+)
+ 
+}
+ 
+Plot{
+eDensity hDensity eCurrent hCurrent
+Potential SpaceCharge ElectricField
+eMobility hMobility eVelocity hVelocity
+Doping DonorConcentration AcceptorConcentration
+}
+ 
+Math{
+Extrapolate
+RelErrControl
+-CheckUndefinedModels
+}
+ 
+Solve{
+Poisson
+Coupled { Poisson Electron }
+Quasistationary ( MaxStep=0.05
+Goal{ Name="g" Voltage=2 } )
+{ Coupled { Poisson Electron } }
+}
