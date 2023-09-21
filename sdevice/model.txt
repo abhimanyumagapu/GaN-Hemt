@@ -1,20 +1,10 @@
-File{
-Grid = "sdemodel_msh.tdr"
-Plot = "n1_des.tdr"
-Current = "n2_des.plt"
-Output = "n3_des.log"
-}
- 
-Electrode{
-{ Name="s" Voltage=0.0}
-{ Name="d" Voltage=0.7}
-{ Name="g" Voltage=0.0}
-}
- 
-Physics(Material="Silicon"){
+
+Physics(Material="Silicon")
 Fermi
 EffectiveIntrinsicDensity(OldSlotboom)
-Mobility(
+
+Mobility
+(
 PhuMob
 Enormal
 eHighFieldsat(CarrierTempDrive)
@@ -27,21 +17,6 @@ SRH(DopingDependence)
 eAvalanche(CarrierTempDrive)
 hAvalanche(CarrierTempDrive)
 )
- 
-}
- 
-Plot{
-eDensity hDensity eCurrent hCurrent
-Potential SpaceCharge ElectricField
-eMobility hMobility eVelocity hVelocity
-Doping DonorConcentration AcceptorConcentration
-}
- 
-Math{
-Extrapolate
-RelErrControl
--CheckUndefinedModels
-}
  
 Solve{
 Poisson
