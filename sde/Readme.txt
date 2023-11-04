@@ -13,4 +13,3 @@ Gan gate - 2x1nm - 1e16 boron doping
 Passivation layer 1 (Si3N4) - 2.5x1nm
 Passivation layer 2 (Si3N4) - 4.5x1nm
 
-For the full code send a pull request or email me.
